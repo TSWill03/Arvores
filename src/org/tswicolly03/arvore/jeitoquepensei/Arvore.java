@@ -149,19 +149,20 @@ public class Arvore {
         } else if (valor > raiz.getValor()) {
             raiz.setNoDireita(removerNo(raiz.getNoDireita(), valor));
         } else {
-            // Caso 1: Nó é uma folha
+
+            // Nó é uma folha
             if (raiz.getNoEsquerda() == null && raiz.getNoDireita() == null) {
                 return null;
             }
 
-            // Caso 2: Nó tem apenas um filho
+            // apenas um filho
             if (raiz.getNoEsquerda() == null) {
                 return raiz.getNoDireita();
             } else if (raiz.getNoDireita() == null) {
                 return raiz.getNoEsquerda();
             }
 
-            // Caso 3: Nó tem dois filhos
+            // tem dois filhos
             No sucessor = encontrarMinimo(raiz.getNoDireita());
             raiz.setValor(sucessor.getValor());
             raiz.setNoDireita(removerNo(raiz.getNoDireita(), sucessor.getValor()));
@@ -176,5 +177,25 @@ public class Arvore {
             raiz = raiz.getNoEsquerda();
         }
         return raiz;
+    }
+
+    private No encontrarMaximo(No raiz){
+        while (raiz.getNoDireita() != null){
+            raiz = raiz.getNoDireita();
+        }
+        return raiz;
+    }
+
+    public boolean isFolha(int valor){
+        return true;
+    }
+    private boolean isFolha(No raiz){
+        if(raiz.getAltura() != 1){
+            return true;
+        }
+        else return false;
+    }
+    public No encontrarPredecessor(No raiz){
+        return encontrarMaximo(raiz);
     }
 }
