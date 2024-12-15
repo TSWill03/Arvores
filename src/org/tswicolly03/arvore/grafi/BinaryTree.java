@@ -34,7 +34,7 @@ class BinaryTree {
     public void insert(int value) {
         root = insertRec(root, value);
         root = balanceTree(root); // Balanceia a árvore
-        regenerateGraph("Inserção de " + value, getAffectedNodes("Inserção de " + value), "Inserção de " + value);
+        regenerateGraph("Inserção de " + value, getAffectedNodes("Inserção do elemento " + value), "Inserção do elemento " + value);
     }
 
     private Node insertRec(Node node, int value) {
@@ -62,7 +62,7 @@ class BinaryTree {
 
     public void remove(int value) {
         root = removeRec(root, value);
-        regenerateGraph("Remoção de " + value, getAffectedNodes("Remoção de" + value), "Remoção de " + value);
+        regenerateGraph("Remoção de " + value, getAffectedNodes("Remoção do elemento" + value), "Remoção do elemento " + value);
     }
 
     private Node removeRec(Node node, int value) {
@@ -223,17 +223,6 @@ class BinaryTree {
     }
 
 
-    private void regenerateGraph(String operation, String affectedNodes) {
-        updateCount++;
-        String dotFilePath = folderPath + "/dot/binary_tree_" + updateCount + ".dot";
-        String pngFilePath = folderPath + "/png/binary_tree_" + updateCount + ".png";
-
-        createDotFile(dotFilePath);
-        convertDotToPng(dotFilePath, pngFilePath);
-
-        logOperation(operation, affectedNodes);
-    }
-
     private void regenerateGraph(String operation, String affectedNodes, String nameImages) {
         updateCount++;
         String dotFilePath = folderPath + "/dot/binary_tree_" + updateCount + "_" + nameImages + ".dot";
@@ -279,6 +268,7 @@ class BinaryTree {
         return affectedNodes.toString();
     }
 
+    //
     public void rebuildTree() {
         List<Integer> values = new ArrayList<>();
         inOrderTraversal(root, values);
@@ -286,7 +276,7 @@ class BinaryTree {
         for (int value : values) {
             root = insertRec(root, value);
         }
-        regenerateGraph("Reorganização da árvore", getAffectedNodes("Reorganização"));
+        regenerateGraph("Reorganização da árvore", getAffectedNodes("Reorganização"), "Reorganização da arvore");
     }
 
     private void inOrderTraversal(Node node, List<Integer> values) {

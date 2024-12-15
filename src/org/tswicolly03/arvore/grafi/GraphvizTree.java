@@ -15,30 +15,6 @@ import java.time.format.DateTimeFormatter;
 
 
 public class GraphvizTree {
-    public static void main(String[] args) {
-        // Caminho base para os gráficos
-        String baseFolder = "graficos";
-
-        // Garante que a pasta base existe
-        createBaseFolder(baseFolder);
-
-        // Cria uma nova subpasta para armazenar os arquivos desta execução
-        String newFolder = createNewFolder(baseFolder);
-
-        // Inicializa a árvore binária com a nova pasta
-        BinaryTree tree = new BinaryTree(newFolder);
-
-        // Insere uma caralhada de valores
-        tree.massInsert(List.of(50, 1, 64, 12, 18, 66, 38, 95, 58, 59, 70, 68, 39, 62, 7, 60,
-                43, 16, 67, 34, 35));
-
-
-        // Remove multiplos valores
-        tree.massRemove(List.of(50, 95, 70, 60, 35));
-
-
-        System.out.println("Processamento concluído! Verifique os gráficos e logs em: " + newFolder);
-    }
 
     /**
      * Garante que a pasta base existe, criando-a se necessário.
@@ -82,5 +58,32 @@ public class GraphvizTree {
         }
 
         return newFolder.getAbsolutePath();
+    }
+
+    public static void main(String[] args) {
+        // Caminho base para os gráficos
+        String baseFolder = "graficos";
+
+        // Garante que a pasta base existe
+        createBaseFolder(baseFolder);
+
+        // Cria uma nova subpasta para armazenar os arquivos desta execução
+        String newFolder = createNewFolder(baseFolder);
+
+        // Inicializa a árvore binária com a nova pasta
+        BinaryTree tree = new BinaryTree(newFolder);
+
+        // Insere uma caralhada de valores
+        // Exemplo de inserção dos elementos 50, 1, 64, 12, 18, 66, 38, 95, 58, 59, 70, 68, 39, 62, 7, 60, 43, 16, 67, 34, 35
+        tree.massInsert(List.of(50, 1, 64, 12, 18, 66, 38, 95, 58, 59, 70, 68, 39, 62, 7, 60,
+                43, 16, 67, 34, 35));
+
+
+        // Remove multiplos valores
+        // Exemplo de remoção dos elementos 50, 95, 70, 60, 35
+        tree.massRemove(List.of(50, 95, 70, 60, 35));
+
+
+        System.out.println("Processamento concluído! Verifique os gráficos e logs em: " + newFolder);
     }
 }
